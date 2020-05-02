@@ -27,8 +27,20 @@ export async function loadJob(id) {
                 description
               }
             }`
-    const {job} = await graphQLRequest(query, {id})
+    const {job} = await graphQLRequest(query, {id});
     return job;
+}
+
+export async  function loadCompany(id) {
+    const query = `query CompanyQuery($id: ID!) {
+      company(id: $id){
+        id
+        name
+        description
+      }
+    }`;
+    const {company} = await graphQLRequest(query, {id});
+    return company;
 }
 
 async function graphQLRequest(query, variables={}) {
